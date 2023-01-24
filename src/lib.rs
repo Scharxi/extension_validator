@@ -5,11 +5,14 @@ mod extension;
 
 #[cfg(test)]
 mod tests {
-    use crate::validator::Validator;
+    use crate::validator::{FileExtensionValidator, Validator};
 
     #[test]
     fn it_works() {
-        let validator = Validator::new();
-        assert!(validator.is_valid("txt", "test.txt"))
+        let validator = FileExtensionValidator::new();
+        let valid = validator.is_valid("txt", "atest.txt");
+        assert!(!valid);
+        let valid = validator.is_valid("txt", "test.txt");
+        assert!(valid);
     }
 }
